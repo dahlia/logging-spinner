@@ -52,6 +52,15 @@ __ https://hongminhee.org/
 Changelog
 ---------
 
+Version 0.2.0
+-------------
+
+To be released.
+
+- ``logging_spinner.UserWaitingFilter`` was introduced to avoid duplicate
+  prints of a log record with ``user_waiting`` extra field.
+
+
 Version 0.1.0
 -------------
 

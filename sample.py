@@ -1,8 +1,9 @@
 import logging
+import os
 import sys
 import time
 
-from logging_spinner import SpinnerHandler
+from logging_spinner import SpinnerHandler, UserWaitingFilter
 
 
 logger = logging.getLogger('sample')
@@ -10,6 +11,10 @@ logger = logging.getLogger('sample')
 
 def sample_program(interval):
     l = logger.getChild('sample_program')
+
+    l.debug('sample_program() was called.')
+    # Log records without "user_waiting" extra field are ignored by
+    # logging-spinner.
 
     l.info("Let's get started!", extra={'user_waiting': True})
     # The "user_waiting" extra field is used by logging-spinner.
@@ -36,6 +41,16 @@ def main(stream=sys.stdout):
     handler = SpinnerHandler(stream=stream)
     logger.addHandler(handler)
     logger.setLevel(logging.INFO)
+
+    # If a StreamHandler is also installed together it should filter
+    # log records with "user_waiting" extra field so that these log messages
+    # won't be printed twice (with a spinner, and without a spinner again).
+    if os.environ.get('DEBUG') in ('yes', 'y', '1', 'true'):
+        stream_handler = logging.StreamHandler(stream=stream)
+        stream_handler.addFilter(UserWaitingFilter())
+        stream_handler.setLevel(logging.DEBUG)
+        logger.addHandler(stream_handler)
+        logger.setLevel(logging.DEBUG)
 
     sample_program(interval=interval)
 

@@ -5,8 +5,8 @@ import threading
 
 from pyspin.spin import Default, Spinner
 
-__all__ = 'SpinnerHandler',
-__version__ = '0.1.0'
+__all__ = 'SpinnerHandler', 'UserWaitingFilter'
+__version__ = '0.2.0'
 
 
 class SpinnerHandler(logging.Handler):
@@ -27,7 +27,8 @@ class SpinnerHandler(logging.Handler):
         })
         self._current_record = None
 
-    def filter(self, record):
+    @staticmethod
+    def filter(record):
         return hasattr(record, 'user_waiting')
 
     def get_stream(self):
@@ -75,3 +76,15 @@ class SpinnerHandler(logging.Handler):
         s = self._current_record.getMessage()
         stream.write(u'\r{0:{1}}\n'.format(s, previous_line_length))
         stream.flush()
+
+
+class UserWaitingFilter(logging.Filter):
+    """Logging filter to avoid duplicate message prints of a log record
+    with ``user_waiting`` extra field.  If a ``SpinnerHandler`` and
+    a ``StreamHandler`` are both installed to one logger at a time
+    the ``StreamHandler`` need to ``addFilter()`` this.
+
+    """
+
+    def filter(self, record):
+        return not SpinnerHandler.filter(record)
