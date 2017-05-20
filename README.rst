@@ -1,6 +1,10 @@
 logging-spinner: non-intrusive spinner for Python
 =================================================
 
+.. image:: https://badge.fury.io/py/logging-spinner.svg
+   :target: https://pypi.python.org/pypi/logging-spinner
+   :alt: Latest PyPI version
+
 .. image:: https://travis-ci.org/dahlia/logging-spinner.svg
    :alt: Build Status
    :target: https://travis-ci.org/dahlia/logging-spinner
@@ -51,4 +55,4 @@ Changelog
 Version 0.1.0
 -------------
 
-To be released.
+Released on May 21, 2017.  The initial release.
