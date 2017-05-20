@@ -1,6 +1,10 @@
 logging-spinner: non-intrusive spinner for Python
 =================================================
 
+.. image:: https://travis-ci.org/dahlia/logging-spinner.svg
+   :alt: Build Status
+   :target: https://travis-ci.org/dahlia/logging-spinner
+
 This library helps to display loading spinners in CLI in non-intrusive manner.
 Applications/libraries don't have to depend on any third-party API, but only
 need to log loading messages through Python's standard ``logging`` library:
