@@ -55,7 +55,7 @@ Changelog
 Version 0.2.0
 -------------
 
-To be released.
+Released on May 21, 2017.
 
 - ``logging_spinner.UserWaitingFilter`` was introduced to avoid duplicate
   prints of a log record with ``user_waiting`` extra field.
