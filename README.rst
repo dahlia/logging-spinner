@@ -33,3 +33,22 @@ At the outest code of the application, setup a ``SpinnerHandler``:
 field and displays them with a spinner.
 
 See also `sample.py <sample.py>`_ code.
+
+
+Author and license
+------------------
+
+Written by `Hong Minhee`__ and distributed under GPLv3_ or later.
+
+__ https://hongminhee.org/
+.. _GPLv3: https://www.gnu.org/licenses/gpl-3.0.html
+
+
+
+Changelog
+---------
+
+Version 0.1.0
+-------------
+
+To be released.
