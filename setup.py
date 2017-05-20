@@ -36,12 +36,14 @@ def readme():
 
         def repl(m):
             whole = m.group(0)
-            if m.group(1).startswith(('http://', 'https://')):
+            gid = 1 if m.group(1) else 2
+            if m.group(gid).startswith(('http://', 'https://')):
                 return whole
-            head = whole[:m.start(1) - m.start()]
-            tail = whole[m.end(1) - m.start():]
-            return head + url.format(branch, m.group(1)) + tail
-        return re.sub(r'\n.. image:: ([^\n]+)\n', repl, rst)
+            head = whole[:m.start(gid) - m.start()]
+            tail = whole[m.end(gid) - m.start():]
+            return head + url.format(branch, m.group(gid)) + tail
+        return re.sub(r'\n.. image:: ([^\n]+)\n|`[^`<>]+\s+<([^`<>]+)>`_',
+                      repl, rst)
     except IOError:
         pass
 

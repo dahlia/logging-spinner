@@ -32,4 +32,4 @@ At the outest code of the application, setup a ``SpinnerHandler``:
 ``SpinnerHandler`` is only aware of log records with ``user_waiting`` extra
 field and displays them with a spinner.
 
-See also :file:`sample.py` code.
+See also `sample.py <sample.py>`_ code.
