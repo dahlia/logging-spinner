@@ -57,6 +57,9 @@ Version 0.2.1
 
 To be released.
 
+- Fixed a bug that ``SpinerHandler`` had crashed when ``user_waiting`` log
+  records show a spinner again after a previous spinner was hidden.
+
 
 Version 0.2.0
 -------------
