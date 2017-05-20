@@ -1,6 +1,7 @@
 import ast
 import os
 import os.path
+import re
 
 from setuptools import setup
 
@@ -26,10 +27,21 @@ def get_version():
 
 
 def readme():
+    url = 'https://raw.githubusercontent.com/dahlia/logging-spinner/{0}/{1}'
+    branch = get_version()
     path = os.path.join(os.path.dirname(__file__), 'README.rst')
     try:
         with open(path) as f:
-            return f.read()
+            rst = f.read()
+
+        def repl(m):
+            whole = m.group(0)
+            if m.group(1).startswith(('http://', 'https://')):
+                return whole
+            head = whole[:m.start(1) - m.start()]
+            tail = whole[m.end(1) - m.start():]
+            return head + url.format(branch, m.group(1)) + tail
+        return re.sub(r'\n.. image:: ([^\n]+)\n', repl, rst)
     except IOError:
         pass
 
