@@ -73,7 +73,7 @@ class SpinnerHandler(logging.Handler):
             with self._current_record_changed:
                 self._current_record_changed.wait(self._spin_interval)
         s = self._current_record.getMessage()
-        stream.write(u'\r{0:{1}}\n'.format(s, previous_line_length))
+        stream.write(u'\r{0:{1}}\n'.format(s, previous_line_length or 1))
         stream.flush()
         self._thread = threading.Thread(target=self._display)
 
