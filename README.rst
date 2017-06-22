@@ -52,6 +52,16 @@ __ https://hongminhee.org/
 Changelog
 ---------
 
+Version 0.2.2
+-------------
+
+Released on June 22, 2017.
+
+- Fixed a ``ValueError`` raised when a log record with
+  ``{'user_waiting': Flase}`` is made without any previous log records
+  with ``{'user_waiting': True}``.
+
+
 Version 0.2.1
 -------------
 

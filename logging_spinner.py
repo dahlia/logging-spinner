@@ -6,7 +6,7 @@ import threading
 from pyspin.spin import Default, Spinner
 
 __all__ = 'SpinnerHandler', 'UserWaitingFilter'
-__version__ = '0.2.1'
+__version__ = '0.2.2'
 
 
 class SpinnerHandler(logging.Handler):
